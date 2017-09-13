@@ -1,3 +1,15 @@
+/**
+ * @typedef {AsyncEvent} AsyncEvent
+ * @property {string} status
+ * @property {boolean|null} error
+ * @property {boolean} isExecuting
+ * @property {boolean} isSuccessful
+ * @property {boolean} isReady
+ */
+
+/**
+ * @returns AsyncAction
+ */
 export default class AsyncEvent {
 	constructor() {
 		super();
@@ -13,9 +25,6 @@ export default class AsyncEvent {
 		return this.error === true;
 	}
 
-	/**
-	 * @returns {AsyncAction}
-	 */
 	markAsExecuting() {
 		this.status = 'executing';
 		this.error = null;
@@ -24,9 +33,6 @@ export default class AsyncEvent {
 		this.isSuccessful = false;
 	}
 
-	/**
-	 * @returns {AsyncAction}
-	 */
 	resolve() {
 		this.status = 'success';
 		this.error = null;
@@ -35,10 +41,6 @@ export default class AsyncEvent {
 		this.isSuccessful = true;
 	}
 
-	/**
-	 * @param {Error} error
-	 * @returns {AsyncAction}
-	 */
 	reject(error) {
 		this.status = 'errir';
 		this.error = error;
@@ -47,9 +49,6 @@ export default class AsyncEvent {
 		this.isSuccessful = false;
 	}
 
-	/**
-	 * @returns {AsyncAction}
-	 */
 	reset() {
 		this.status = 'ready';
 		this.error = null;
