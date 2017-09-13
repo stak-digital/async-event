@@ -42,7 +42,7 @@ export default class AsyncEvent {
 	}
 
 	reject(error) {
-		this.status = 'errir';
+		this.status = 'error';
 		this.error = error;
 		this.isExecuting = false;
 		this.isReady = false;
