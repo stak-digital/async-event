@@ -8,7 +8,7 @@
   "license": "MIT",
   "scripts": {
     "test": "",
-    "build": ""
+    "build": "rollup --config rollup.config.js"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -17,6 +17,7 @@
     "expect": "^21.0.2",
     "mocha": "^3.5.3",
     "rollup": "^0.49.3",
-    "rollup-plugin-babel": "^3.0.2"
+    "rollup-plugin-babel": "^3.0.2",
+    "babel-preset-stage-3": "^6.24.1"
   }
 }
