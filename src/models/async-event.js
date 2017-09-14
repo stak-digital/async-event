@@ -20,7 +20,7 @@ export default class AsyncEvent {
 	}
 
 	get hasError() {
-		return this.error === true;
+		return this.status === 'error';
 	}
 
 	markAsExecuting() {
