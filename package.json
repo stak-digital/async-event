@@ -7,17 +7,36 @@
   "author": "Luke Boyle <luke.boyle.au@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "",
+    "test": "NODE_ENV=test jest --coverage && codecov",
+    "watch:tests": "NODE_ENV=test jest --watch",
     "build": "rollup --config rollup.config.js"
+  },
+  "babel": {
+    "env": {
+      "test": {
+        "presets": [
+          "es2017",
+          "es2015",
+          "stage-3"
+        ],
+        "plugins": [
+          "istanbul"
+        ]
+      }
+    }
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
+    "babel-jest": "^20.0.3",
+    "babel-plugin-istanbul": "^4.1.4",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-es2017": "^6.24.1",
-    "expect": "^21.0.2",
-    "mocha": "^3.5.3",
+    "babel-preset-stage-3": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "codecov": "^2.3.0",
+    "expect": "1.20.2",
+    "jest": "^21.1.0",
     "rollup": "^0.49.3",
-    "rollup-plugin-babel": "^3.0.2",
-    "babel-preset-stage-3": "^6.24.1"
+    "rollup-plugin-babel": "^3.0.2"
   }
 }
