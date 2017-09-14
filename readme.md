@@ -1,9 +1,9 @@
 ## Usage
 
 ```javascript
-import AsyncEvent from '@stak-digital/async-event';
+import createAsyncEvent from '@stak-digital/async-event';
 
-const apiRequest = new AsyncEvent;
+const apiRequest = createAsyncEvent();
 
 async function apiCall() {
     apiRequest.markAsExecuting();
@@ -18,11 +18,66 @@ async function apiCall() {
 }
 ```
 
+This unlocks the ability to easily manage loading/loaded states in your view.
+
+React:
+```jsx
+class App extends React.Component() {
+    constructor() {
+        super();
+        
+        this.state = {
+            apiRequestEvent: createAsyncEvent()
+        };
+    }
+    
+    async handleButtonClicked() {
+        this.setState({
+            apiRequestEvent: this.state.apiRequestEvent.markAsExecuting()
+        });
+            
+        try {
+            await fetch('/some-url')
+        
+            this.setState({
+                apiRequestEvent: this.state.apiRequestEvent.resolve()
+            });
+        } catch (e) {
+            this.setState({
+                apiRequestEvent: this.state.apiRequestEvent.reject(e)
+            });
+        }
+    }
+    
+    render() {
+        return (
+            <div>
+                {this.state.apiRequestEvent.isExecuting && (
+                    <Spinner />
+                )}
+                {this.state.apiRequestEvent.hasError && (
+                    <span>
+                        Something went wrong!
+                    </span>
+                )}
+                
+                <button 
+                    onClick={this.handleButtonClicked} 
+                    disabled={this.state.apiRequestEvent.isExecuting}
+                >
+                    Click me for magic
+                </button>
+            </div>	
+        );
+    }
+}
+```
+
 ## API
 
-### AsyncEvent
+### createAsyncEvent
 ```
-new AsyncEvent;
+import createAsyncEvent
 ```
 
 ### Returns
