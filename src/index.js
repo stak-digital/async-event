@@ -10,10 +10,8 @@
 /**
  * @returns AsyncAction
  */
-export default class AsyncEvent {
+class AsyncEvent {
 	constructor() {
-		super();
-
 		this.status = 'ready';
 		this.error = null;
 		this.isExecuting = false;
@@ -26,34 +24,50 @@ export default class AsyncEvent {
 	}
 
 	markAsExecuting() {
-		this.status = 'executing';
-		this.error = null;
-		this.isExecuting = true;
-		this.isReady = false;
-		this.isSuccessful = false;
+		return {
+			...this,
+			status: 'executing',
+			error: null,
+			isExecuting: true,
+			isReady: false,
+			isSuccessful: false
+		};
 	}
 
 	resolve() {
-		this.status = 'success';
-		this.error = null;
-		this.isExecuting = false;
-		this.isReady = false;
-		this.isSuccessful = true;
+		return {
+			...this,
+			status: 'success',
+			error: null,
+			isExecuting: false,
+			isReady: false,
+			isSuccessful: true
+		};
 	}
 
 	reject(error) {
-		this.status = 'error';
-		this.error = error;
-		this.isExecuting = false;
-		this.isReady = false;
-		this.isSuccessful = false;
+		return {
+			...this,
+			status: 'error',
+			error: error,
+			isExecuting: false,
+			isReady: false,
+			isSuccessful: false
+		};
 	}
 
 	reset() {
-		this.status = 'ready';
-		this.error = null;
-		this.isExecuting = false;
-		this.isReady = true;
-		this.isSuccessful = false;
+		return {
+			...this,
+			status: 'ready',
+			error: null,
+			isExecuting: false,
+			isReady: true,
+			isSuccessful: false
+		};
 	}
+}
+
+export default function() {
+	return new AsyncEvent();
 }
