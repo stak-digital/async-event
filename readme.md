@@ -1,3 +1,9 @@
+# async-event 
+[![Build Status](https://travis-ci.org/stak-digital/async-event.svg?branch=master)](https://travis-ci.org/stak-digital/async-event) [![codecov](https://codecov.io/gh/stak-digital/async-event/branch/master/graph/badge.svg)](https://codecov.io/gh/stak-digital/async-event)
+
+
+An immutable micro-library for state management of async events
+
 ## Usage
 
 ```javascript
