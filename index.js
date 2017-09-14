@@ -16,7 +16,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  */
 
 /**
- * @returns AsyncAction
+ * @returns AsyncEvent
  */
 var AsyncEvent = function () {
 	function AsyncEvent() {
