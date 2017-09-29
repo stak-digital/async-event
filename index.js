@@ -13,6 +13,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  * @property {boolean} isExecuting
  * @property {boolean} isSuccessful
  * @property {boolean} isReady
+ * @method {function} markAsExecuting
+ * @method {function} resolve
+ * @method {function} reject
+ * @method {function} reset
  */
 
 /**
@@ -76,7 +80,7 @@ var AsyncEvent = function () {
 	}, {
 		key: 'hasError',
 		get: function get() {
-			return this.error === true;
+			return this.status === 'error';
 		}
 	}]);
 

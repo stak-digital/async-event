@@ -5,6 +5,10 @@
  * @property {boolean} isExecuting
  * @property {boolean} isSuccessful
  * @property {boolean} isReady
+ * @method {function} markAsExecuting
+ * @method {function} resolve
+ * @method {function} reject
+ * @method {function} reset
  */
 
 /**
