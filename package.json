@@ -1,6 +1,6 @@
 {
   "name": "@stak-digital/async-event",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
   "module": "src/index.js",
   "repository": "https://3stacks@github.com/stak-digital/async-event.git",
