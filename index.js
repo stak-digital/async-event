@@ -87,8 +87,12 @@ var AsyncEvent = function () {
 	return AsyncEvent;
 }();
 
-var index = function () {
+function createAsyncEvent() {
 	return new AsyncEvent();
-};
+}
 
-module.exports = index;
+var event = createAsyncEvent();
+
+console.log(event);
+
+module.exports = createAsyncEvent;

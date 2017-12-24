@@ -1,5 +1,5 @@
 import expect from 'expect';
-import createAsyncEvent from '../index';
+import createAsyncEvent from '../src';
 import AsyncEvent from '../src/models/async-event';
 
 describe('createAsyncEvent', () => {
@@ -16,7 +16,7 @@ describe('createAsyncEvent', () => {
 
 		expect(
 			createAsyncEvent()
-		).toBeA(AsyncEvent);
+		).toBeA(new AsyncEvent());
 
 	});
 
