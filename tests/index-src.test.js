@@ -16,7 +16,7 @@ describe('createAsyncEvent', () => {
 
 		expect(
 			createAsyncEvent()
-		).toBeA(new AsyncEvent());
+		).toBeA(AsyncEvent);
 
 	});
 

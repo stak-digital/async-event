@@ -12,14 +12,6 @@ describe('createAsyncEvent', () => {
 
 	});
 
-	test('it should return an AsyncEvent', () => {
-
-		expect(
-			createAsyncEvent()
-		).toBeA(AsyncEvent);
-
-	});
-
 	test('it should return the correct initial state', () => {
 		const event = createAsyncEvent();
 
