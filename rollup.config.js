@@ -9,6 +9,7 @@ export default {
 	plugins: [
 		babel({
 			presets: [
+				'flow',
 				[
 					'es2015', {
 						modules: false

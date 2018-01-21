@@ -1,3 +1,4 @@
+// @flow
 /**
  * @typedef {AsyncEvent} AsyncEvent
  * @property {string} status
@@ -15,7 +16,7 @@
  * @returns AsyncEvent
  */
 export default class AsyncEvent {
-	constructor() {
+	constructor() : AsyncEvent {
 		this.status = 'ready';
 		this.error = null;
 		this.isExecuting = false;
@@ -23,11 +24,11 @@ export default class AsyncEvent {
 		this.isReady = true;
 	}
 
-	get hasError() {
+	get hasError() : boolean {
 		return this.status === 'error';
 	}
 
-	markAsExecuting() {
+	markAsExecuting() : AsyncEvent {
 		return {
 			...this,
 			status: 'executing',
@@ -38,7 +39,7 @@ export default class AsyncEvent {
 		};
 	}
 
-	resolve() {
+	resolve() : AsyncEvent {
 		return {
 			...this,
 			status: 'success',
@@ -49,7 +50,7 @@ export default class AsyncEvent {
 		};
 	}
 
-	reject(error) {
+	reject(error : string) : AsyncEvent {
 		return {
 			...this,
 			status: 'error',
@@ -60,7 +61,7 @@ export default class AsyncEvent {
 		};
 	}
 
-	reset() {
+	reset() : AsyncEvent {
 		return {
 			...this,
 			status: 'ready',
