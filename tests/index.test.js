@@ -1,6 +1,5 @@
 import expect from 'expect';
 import createAsyncEvent from '../index';
-import AsyncEvent from '../src/models/async-event';
 
 describe('createAsyncEvent', () => {
 
