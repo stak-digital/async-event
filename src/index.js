@@ -1,4 +1,4 @@
-import AsyncEvent from './models/async-event';
+import AsyncEvent from './models/async-event.js';
 
 /**
  *
