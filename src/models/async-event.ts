@@ -1,16 +1,3 @@
-/**
- * @typedef {AsyncEvent} AsyncEvent
- * @property {string} status
- * @property {boolean|null} error
- * @property {boolean} isExecuting
- * @property {boolean} isSuccessful
- * @property {boolean} isReady
- * @method {function} markAsExecuting
- * @method {function} resolve
- * @method {function} reject
- * @method {function} reset
- */
-
 interface IAsyncEvent {
     status: string
     error?: string
@@ -23,9 +10,6 @@ interface IAsyncEvent {
     reset: () => any
 }
 
-/**
- * @returns AsyncEvent
- */
 export default class AsyncEvent implements IAsyncEvent {
     status: string;
     error?: string;
