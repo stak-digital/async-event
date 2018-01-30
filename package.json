@@ -39,6 +39,8 @@
     "flow-bin": "^0.63.1",
     "jest": "^21.1.0",
     "rollup": "^0.49.3",
-    "rollup-plugin-babel": "^3.0.2"
+    "rollup-plugin-babel": "^3.0.2",
+    "rollup-plugin-typescript": "^0.8.1",
+    "typescript": "^2.6.2"
   }
 }

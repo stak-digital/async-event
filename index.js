@@ -1,10 +1,6 @@
 'use strict';
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+'use strict';
 
 /**
  * @typedef {AsyncEvent} AsyncEvent
@@ -18,73 +14,58 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  * @method {function} reject
  * @method {function} reset
  */
-
 /**
  * @returns AsyncEvent
  */
+
 var AsyncEvent = function () {
-	function AsyncEvent() {
-		_classCallCheck(this, AsyncEvent);
-
-		this.status = 'ready';
-		this.error = null;
-		this.isExecuting = false;
-		this.isSuccessful = false;
-		this.isReady = true;
-	}
-
-	_createClass(AsyncEvent, [{
-		key: 'markAsExecuting',
-		value: function markAsExecuting() {
-			return _extends({}, this, {
-				status: 'executing',
-				error: null,
-				isExecuting: true,
-				isReady: false,
-				isSuccessful: false
-			});
-		}
-	}, {
-		key: 'resolve',
-		value: function resolve() {
-			return _extends({}, this, {
-				status: 'success',
-				error: null,
-				isExecuting: false,
-				isReady: false,
-				isSuccessful: true
-			});
-		}
-	}, {
-		key: 'reject',
-		value: function reject(error) {
-			return _extends({}, this, {
-				status: 'error',
-				error: error,
-				isExecuting: false,
-				isReady: false,
-				isSuccessful: false
-			});
-		}
-	}, {
-		key: 'reset',
-		value: function reset() {
-			return _extends({}, this, {
-				status: 'ready',
-				error: null,
-				isExecuting: false,
-				isReady: true,
-				isSuccessful: false
-			});
-		}
-	}, {
-		key: 'hasError',
-		get: function get() {
-			return this.status === 'error';
-		}
-	}]);
-
-	return AsyncEvent;
+    function AsyncEvent() {
+        this.status = 'ready';
+        this.error = null;
+        this.isExecuting = false;
+        this.isSuccessful = false;
+        this.isReady = true;
+    }
+    Object.defineProperty(AsyncEvent.prototype, "hasError", {
+        get: function get() {
+            return this.status === 'error';
+        },
+        enumerable: true,
+        configurable: true
+    });
+    AsyncEvent.prototype.markAsExecuting = function () {
+        this.status = 'executing';
+        this.error = null;
+        this.isExecuting = true;
+        this.isReady = false;
+        this.isSuccessful = false;
+        return this;
+    };
+    AsyncEvent.prototype.resolve = function () {
+        this.status = 'success';
+        this.error = null;
+        this.isExecuting = false;
+        this.isReady = false;
+        this.isSuccessful = true;
+        return this;
+    };
+    AsyncEvent.prototype.reject = function (error) {
+        this.status = 'error';
+        this.error = error;
+        this.isExecuting = false;
+        this.isReady = false;
+        this.isSuccessful = false;
+        return this;
+    };
+    AsyncEvent.prototype.reset = function () {
+        this.status = 'ready';
+        this.error = null;
+        this.isExecuting = false;
+        this.isReady = true;
+        this.isSuccessful = false;
+        return this;
+    };
+    return AsyncEvent;
 }();
 
 /**
@@ -92,7 +73,7 @@ var AsyncEvent = function () {
  * @returns {AsyncEvent}
  */
 function createAsyncEvent() {
-  return new AsyncEvent();
+    return new AsyncEvent();
 }
 
 module.exports = createAsyncEvent;
