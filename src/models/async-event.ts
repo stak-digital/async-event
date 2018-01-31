@@ -4,10 +4,6 @@ interface IAsyncEvent {
     isExecuting: boolean
     isSuccessful: boolean
     isReady: boolean
-    markAsExecuting: () => any
-    resolve: () => any
-    reject: (error: string) => any
-    reset: () => any
 }
 
 export default class AsyncEvent implements IAsyncEvent {
@@ -25,47 +21,61 @@ export default class AsyncEvent implements IAsyncEvent {
 		this.isReady = true;
 	}
 
+	toJs() : Partial<IAsyncEvent> {
+		return {
+            status: this.status,
+			error: this.error,
+			isExecuting: this.isExecuting,
+			isSuccessful: this.isSuccessful,
+			isReady: this.isReady,
+			hasError: this.hasError,
+
+		};
+	}
+
 	get hasError() : boolean {
 		return this.status === 'error';
 	}
 
 	markAsExecuting() {
-		this.status = 'executing';
-		this.error = null;
-		this.isExecuting = true;
-		this.isReady = false;
-		this.isSuccessful = false;
-
-		return this;
+		return {
+			...this.toJs(),
+			status: 'executing',
+			isExecuting: true,
+			isReady: false
+		};
 	}
 
 	resolve() {
-		this.status = 'success';
-		this.error = null;
-		this.isExecuting = false;
-		this.isReady = false;
-		this.isSuccessful = true;
-
-		return this;
+		return {
+			...this.toJs(),
+			status: 'success',
+			error: null,
+			isExecuting: false,
+			isReady: false,
+			isSuccessful: true
+		};
 	}
 
 	reject(error : string) {
-		this.status = 'error';
-		this.error = error;
-		this.isExecuting = false;
-		this.isReady = false;
-		this.isSuccessful = false;
-
-		return this;
+		return {
+			...this.toJs(),
+            status: 'error',
+            error: error,
+            isExecuting: false,
+            isReady: false,
+            isSuccessful: false
+		};
 	}
 
 	reset() {
-		this.status = 'ready';
-		this.error = null;
-		this.isExecuting = false;
-		this.isReady = true;
-		this.isSuccessful = false;
-
-		return this;
+		return {
+			...this.toJs(),
+            status: 'ready',
+			error: null,
+			isExecuting: false,
+			isReady: true,
+			isSuccessful: false
+		};
 	}
 }
