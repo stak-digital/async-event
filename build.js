@@ -26,7 +26,9 @@ const inputOptions = {
 		const sourceBundle = await rollup.rollup({
 			input: './src/index.ts',
 			plugins: [
-				typescript()
+				typescript({
+					target: 'es6'
+				})
 			]
 		});
 
