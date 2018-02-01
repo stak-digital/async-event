@@ -1,52 +1,25 @@
 'use strict';
 
-class AsyncEvent {
-    constructor() {
-        this.status = 'ready';
-        this.error = null;
-        this.isExecuting = false;
-        this.isSuccessful = false;
-        this.isReady = true;
-    }
-    get hasError() {
-        return this.status === 'error';
-    }
-    markAsExecuting() {
-        this.status = 'executing';
-        this.error = null;
-        this.isExecuting = true;
-        this.isReady = false;
-        this.isSuccessful = false;
-        return this;
-    }
-    resolve() {
-        this.status = 'success';
-        this.error = null;
-        this.isExecuting = false;
-        this.isReady = false;
-        this.isSuccessful = true;
-        return this;
-    }
-    reject(error) {
-        this.status = 'error';
-        this.error = error;
-        this.isExecuting = false;
-        this.isReady = false;
-        this.isSuccessful = false;
-        return this;
-    }
-    reset() {
-        this.status = 'ready';
-        this.error = null;
-        this.isExecuting = false;
-        this.isReady = true;
-        this.isSuccessful = false;
-        return this;
-    }
-}
-
 function createAsyncEvent() {
-    return new AsyncEvent();
+    return {
+        status: 'ready',
+        error: null,
+        isExecuting: false,
+        isSuccessful: false,
+        isReady: true,
+        markAsExecuting() {
+            return Object.assign({}, this, { status: 'executing', isExecuting: true, isReady: false });
+        },
+        resolve() {
+            return Object.assign({}, this, { status: 'success', error: null, isExecuting: false, isReady: false, isSuccessful: true });
+        },
+        reject(error) {
+            return Object.assign({}, this, { status: 'error', error: error, isExecuting: false, isReady: false, isSuccessful: false });
+        },
+        reset() {
+            return Object.assign({}, this, { status: 'ready', error: null, isExecuting: false, isReady: true, isSuccessful: false });
+        }
+    };
 }
 
 module.exports = createAsyncEvent;

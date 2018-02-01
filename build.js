@@ -27,7 +27,7 @@ const inputOptions = {
 			input: './src/index.ts',
 			plugins: [
 				typescript({
-					target: 'es6'
+					typescript: require('typescript')
 				})
 			]
 		});
