@@ -1,4 +1,4 @@
-interface IAsyncEvent {
+export interface IAsyncEvent {
     status: string
     error?: string
     isExecuting: boolean
