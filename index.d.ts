@@ -1,5 +1,5 @@
-import {IAsyncEvent} from './src/index';
+import {AsyncEvent} from './src';
 
-declare function createAsyncEvent() : IAsyncEvent;
+declare function createAsyncEvent() : AsyncEvent;
 
 export default createAsyncEvent;

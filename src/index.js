@@ -1,25 +1,55 @@
 'use strict';
 
+Object.defineProperty(exports, '__esModule', { value: true });
+
+class AsyncEvent {
+    constructor({ status, errorMessage }) {
+        this.status = status;
+        this.errorMessage = errorMessage;
+    }
+    markAsExecuting() {
+        return new AsyncEvent({
+            status: 'executing',
+            errorMessage: null
+        });
+    }
+    resolve() {
+        return new AsyncEvent({
+            status: 'success',
+            errorMessage: null
+        });
+    }
+    reject(error) {
+        return new AsyncEvent({
+            status: 'error',
+            errorMessage: error
+        });
+    }
+    reset() {
+        return new AsyncEvent({
+            status: 'ready',
+            errorMessage: null
+        });
+    }
+    get isReady() {
+        return this.status === 'ready';
+    }
+    get hasError() {
+        return this.status === 'error';
+    }
+    get isExecuting() {
+        return this.status === 'executing';
+    }
+    get isSuccessful() {
+        return this.status === 'success';
+    }
+}
 function createAsyncEvent() {
-    return {
+    return new AsyncEvent({
         status: 'ready',
-        error: null,
-        isExecuting: false,
-        isSuccessful: false,
-        isReady: true,
-        markAsExecuting() {
-            return Object.assign({}, this, { status: 'executing', isExecuting: true, isReady: false });
-        },
-        resolve() {
-            return Object.assign({}, this, { status: 'success', error: null, isExecuting: false, isReady: false, isSuccessful: true });
-        },
-        reject(error) {
-            return Object.assign({}, this, { status: 'error', error: error, isExecuting: false, isReady: false, isSuccessful: false });
-        },
-        reset() {
-            return Object.assign({}, this, { status: 'ready', error: null, isExecuting: false, isReady: true, isSuccessful: false });
-        }
-    };
+        errorMessage: null
+    });
 }
 
-module.exports = createAsyncEvent;
+exports['default'] = createAsyncEvent;
+exports.AsyncEvent = AsyncEvent;
