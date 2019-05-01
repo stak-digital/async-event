@@ -24,7 +24,7 @@ const inputOptions = {
 	// create a bundle
 	try {
 		const sourceBundle = await rollup.rollup({
-			input: './src/index.ts',
+			input: './index.ts',
 			plugins: [
 				typescript({
 					typescript: require('typescript')
@@ -33,29 +33,6 @@ const inputOptions = {
 		});
 
 		await sourceBundle.write({
-			file: './src/index.js',
-			format: 'cjs'
-		});
-
-		const distBundle = await rollup.rollup({
-			input: './src/index.js',
-			plugins: [
-				babel({
-					presets: [
-						'flow',
-						[
-							'es2015', {
-							modules: false
-						}
-						],
-						'es2017',
-						'stage-3'
-					]
-				})
-			]
-		});
-
-		await distBundle.write({
 			file: './index.js',
 			format: 'cjs'
 		});

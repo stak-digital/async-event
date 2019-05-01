@@ -1,7 +1,6 @@
 # async-event 
 [![Build Status](https://travis-ci.org/stak-digital/async-event.svg?branch=master)](https://travis-ci.org/stak-digital/async-event) [![codecov](https://codecov.io/gh/stak-digital/async-event/branch/master/graph/badge.svg)](https://codecov.io/gh/stak-digital/async-event)
 
-
 An immutable micro-library for state management of async events
 
 ## Usage
@@ -95,7 +94,7 @@ AsyncEvent
 | Property | Type | Default |
 | -------- | ---- | ------- |
 | status | string | `'ready'` |
-| error | boolean or null | `null` |
+| errorMessage | boolean or null | `null` |
 | isExecuting | boolean | false |
 | isSuccessful | boolean | false |
 | isReady | boolean | true |
@@ -107,8 +106,9 @@ AsyncEvent
 
 ```
 status - 'executing'
-error - null
+errorMessage - null
 isExecuting - true
+hasError - false
 isReady - false
 isSuccessful - false
 ```
@@ -117,8 +117,9 @@ isSuccessful - false
 
 ```
 status - 'success'
-error - null
+errorMessage - null
 isExecuting - false
+hasError - false
 isReady - false
 isSuccessful - true
 ```
@@ -129,12 +130,13 @@ Arguments
 
 | Property | Type | Example |
 | -------- | ---- | ------- |
-| error | string | `'Internal Server Error'` |
+| errorMessage | string | `'Internal Server Error'` |
 
 ```
 status - 'success'
-error - null
+errorMessage - null
 isExecuting - false
+hasError - true
 isReady - false
 isSuccessful - true
 ```
@@ -143,8 +145,9 @@ isSuccessful - true
 
 ```
 status - 'ready'
-error - null
+errorMessage - null
 isExecuting - false
+hasError - false
 isReady - true
 isSuccessful - false
 ```

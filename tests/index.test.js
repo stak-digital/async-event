@@ -80,31 +80,29 @@ describe('createAsyncEvent', () => {
 	test('it should reject correctly', () => {
 		const event = createAsyncEvent().reject('e');
 
-		console.log(event);
+		expect(
+			event.status
+		).toBe('error');
 
-		// expect(
-		// 	event.status
-		// ).toBe('error');
-
-		// expect(
-		// 	event.errorMessage
-		// ).toBe('e');
+		expect(
+			event.errorMessage
+		).toBe('e');
 
 		expect(
 			event.hasError
 		).toBe(true);
 
-		// expect(
-		// 	event.isExecuting
-		// ).toBe(false);
-		//
-		// expect(
-		// 	event.isSuccessful
-		// ).toBe(false);
-		//
-		// expect(
-		// 	event.isReady
-		// ).toBe(false);
+		expect(
+			event.isExecuting
+		).toBe(false);
+
+		expect(
+			event.isSuccessful
+		).toBe(false);
+
+		expect(
+			event.isReady
+		).toBe(false);
 
 	});
 
